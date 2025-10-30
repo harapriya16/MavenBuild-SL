@@ -14,4 +14,8 @@ jobs:
           distribution: 'temurin'
           java-version: '11'
           cache: 'maven'
+      - name: Build the source code and generate .war file  
+        run: mvn package
+      
+
      
