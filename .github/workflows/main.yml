@@ -26,9 +26,9 @@ jobs:
       - name: Connect to LAB and run curl command to trigger a Job 
         uses: cross-the-world/ssh-scp-ssh-pipelines@latest
         with: 
-          host: '65.2.111.206' # change to your lab server public IP
+          host: '172.31.21.9' 
           user: 'labuser'
-          pass: 'Nuvelabs123$'
+          pass: 'password'
           port: 22
           connect_timeout: 10s
           first_ssh: |
