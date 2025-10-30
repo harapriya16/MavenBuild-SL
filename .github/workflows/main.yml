@@ -26,7 +26,7 @@ jobs:
       - name: Connect to LAB and run curl command to trigger a Job 
         uses: cross-the-world/ssh-scp-ssh-pipelines@latest
         with: 
-          host: '172.31.21.9' 
+          host: '13.200.4.72' 
           user: 'labuser'
           pass: 'password'
           port: 22
