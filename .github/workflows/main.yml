@@ -29,12 +29,7 @@ jobs:
           pass: 'password'
           port: 22
           connect_timeout: 10s
-          first_ssh: |
-            sudo curl -l -u admin:Root123$ http://localhost:8080/job/Build-Job/build?token=token1
-          scp: | 
-           './target/*.war' => /tmp
-          last_ssh:
-            ls -al /tmp
+          
       
       
 
