@@ -1,6 +1,5 @@
 name: CICD using Maven and Jenkins
 on: 
-  push:
   workflow_dispatch:
 jobs:
   CICDJob:
@@ -24,7 +23,7 @@ jobs:
       - name: Connect to LAB and run curl command to trigger a Job 
         uses: cross-the-world/ssh-scp-ssh-pipelines@latest
         with: 
-          host: '65.0.120.99' # change to your lab server public IP
+          host: '13.235.89.241' # change to your lab server public IP
           user: 'labuser'
           pass: 'Nuvelabs123$'
           port: 22
