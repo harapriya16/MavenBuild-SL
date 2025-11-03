@@ -6,15 +6,16 @@ jobs:
     runs-on: ubuntu-latest
     steps:
       - name: Clone the repo on ubuntu server
-        uses: actions/checkout@v4
-      - name: Install Java and Maven on ubuntu server
-        uses: actions/setup-java@v3
+      - uses: actions/checkout@v4 # Checks out your repository under $GITHUB_WORKSPACE
+
+      - name: Set up JDK 17
+        uses: actions/setup-java@v4
         with:
-          distribution: 'temurin'
-          java-version: '11'
-          cache: 'maven'
-      - name: Build the source code and generate .war file  
-        run: mvn package
+         java-version: '17' # Specify the desired Java version
+         distribution: 'temurin' # Or 'adopt', 'zulu', 'microsoft', etc.
+         cache: maven # Caches Maven dependencies for faster builds
+      - name: Build with Maven
+        run: mvn -B package --file pom.xml # Executes the Maven build command
       - name: Get the artifact and upload on github repo
         uses: actions/upload-artifact@v4
         with:
