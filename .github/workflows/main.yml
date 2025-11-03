@@ -1,31 +1,25 @@
 name: CICD using Maven and Jenkins
 on: 
-  push: 
+  push:
   workflow_dispatch:
 jobs:
   CICDJob:
     runs-on: ubuntu-latest
     steps:
       - name: Clone the repo on ubuntu server
-        uses: actions/checkout@v4 # Checks out your repository under $GITHUB_WORKSPACE
-
-      - name: Set up JDK 17
-        uses: actions/setup-java@v4
+        uses: actions/checkout@v4
+      - name: Install Java and Maven on ubuntu server
+        uses: actions/setup-java@v3
         with:
-         java-version: '17' # Specify the desired Java version
-         distribution: 'temurin' # Or 'adopt', 'zulu', 'microsoft', etc.
-         cache: maven # Caches Maven dependencies for faster builds
-      - name: Build with Maven
-        run: mvn -B package --file pom.xml # Executes the Maven build command
-      - name: Get the artifact and upload on github repo
-        uses: actions/upload-artifact@v4
-        with:
-         name: java-example-artifact
-         path: /home/runner/work/MavenBuild-SL/MavenBuild-SL/target/java-example.war
-      - name: Connect to LAB and run curl command to trigger a Job 
+          distribution: 'temurin'
+          java-version: '11'
+          cache: 'maven'
+      - name: Build the source code and generate .war file  
+        run: mvn package
+      - name: connect to LAB and deploy code on tomcat9
         uses: cross-the-world/ssh-scp-ssh-pipelines@latest
-        with: 
-          host: '3.110.180.217' # change to your lab server public IP
+         with:
+          host: '3.110.180.217'
           user: 'labuser'
           pass: 'Nuvelabs123$'
           port: 22
@@ -36,9 +30,3 @@ jobs:
              './target/*war' => /var/lib/tomcat9/webapps
           last_ssh: |
              sudo systemctl restart tomcat9
-
-          
-      
-      
-
-     
