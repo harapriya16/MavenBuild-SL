@@ -23,7 +23,7 @@ jobs:
          name: java-example-artifact
          path: /home/runner/work/MavenBuild-SL/MavenBuild-SL/target/java-example.war
       - name: Connect to LAB and run curl command to trigger a Job 
-        uses: cross-the-world/ssh-scp-ssh-pipelines@v1.1.4
+        uses: cross-the-world/ssh-scp-ssh-pipelines@latest
         with: 
           host: '3.110.180.217' # change to your lab server public IP
           user: 'labuser'
