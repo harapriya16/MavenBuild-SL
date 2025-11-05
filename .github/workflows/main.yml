@@ -3,7 +3,7 @@ name: CICD using Maven and Jenkins
 on:
   push:
     branches:
-      - main
+      - master
 
 jobs:
   CICDJob:
