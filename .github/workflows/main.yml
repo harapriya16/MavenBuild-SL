@@ -40,8 +40,6 @@ jobs:
           HOST: ${{ secrets.SSH_HOST }}
           USER: ${{ secrets.SSH_USER }}
           PASS: ${{ secrets.SSH_PASS }}
-        with: 
-          connect_timeout: 10s
         run: |        
           sudo curl -l -u admin:114dcc534b182442f0a796c1e90fd9bc61 http://localhost:8080/job/DeploymentJob/build?token=token22
     
